@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Pernikahan</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  text-align:center;
+  color:white;
+}
+
+/* BACKGROUND */
+.bg{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:url('cover.jpg') center/cover no-repeat;
+}
+
+/* OVERLAY */
+.overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+}
+
+/* CONTENT */
+.content{
+  position:relative;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.title{
+  font-size:14px;
+  letter-spacing:2px;
+}
+
+.names{
+  font-size:30px;
+  font-weight:bold;
+  margin:15px 0;
+}
+
+.guest{
+  margin-bottom:25px;
+  font-size:15px;
+}
+
+/* BUTTON */
+.btn{
+  padding:14px 30px;
+  background:white;
+  color:black;
+  border-radius:30px;
+  font-weight:bold;
+  border:none;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="music" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="bg"></div>
+<div class="overlay"></div>
+
+<div class="content">
+
+  <div class="title">UNDANGAN PERNIKAHAN</div>
+
+  <div class="names">
+    Muhamad Yuda Permana <br>&<br> Savitri
+  </div>
+
+  <div class="guest" id="guestName">
+    Kepada Yth. Tamu Undangan
+  </div>
+
+  <button class="btn" onclick="bukaUndangan()">
+    Buka Undangan
+  </button>
+
+</div>
+
+<script>
+
+// ======================
+// NAMA TAMU DARI URL
+// ======================
+const params = new URLSearchParams(window.location.search);
+const guest = params.get("to");
+
+if(guest){
+  document.getElementById("guestName").innerHTML =
+    "Kepada Yth.<br><b>" + decodeURIComponent(guest) + "</b>";
+}
+
+// ======================
+// AUDIO SETUP
+// ======================
+const music = document.getElementById("music");
+
+// unlock audio saat klik pertama di halaman
+document.addEventListener("click", () => {
+  music.play().catch(()=>{});
+}, { once:true });
+
+// ======================
+// BUTTON ACTION
+// ======================
+function bukaUndangan(){
+
+  music.volume = 1;
+  music.play().catch(()=>{});
+
+  // redirect paling stabil
+  window.location.replace(
+    "https://yudapermana.my.canva.site/salinan-dari-desain-website-buku-tamu-interaktif"
+  );
+}
+
+</script>
+
+</body>
+</html>
